@@ -1,0 +1,28 @@
+# Libraries
+*.lvlibp
+*.llb
+
+# Shared objects (inc. Windows DLLs)
+*.so
+*.so.*
+
+# Executables
+*.exe
+
+# Metadata
+*.aliases
+*.lvlps
+
+#Gedit temp files
+*~
+#Old zips
+*.rar
+*.zip
+*.gz
+
+#Latex
+*.aux
+*.log
+*.out
+*-converted-to*
+
