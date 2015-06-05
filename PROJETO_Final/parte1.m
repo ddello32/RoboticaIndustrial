@@ -24,7 +24,7 @@ qdes = [0 pi/2 -pi/2 0 0 0];
 T = bot.rne(qdes, zeros(1,6), zeros(1,6));
 
 % Carrega o modelo simulink
-model = 'parte1';
+model = 'parte1simulink';
 load_system(model);
 
 
