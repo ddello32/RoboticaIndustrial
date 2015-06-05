@@ -1,0 +1,332 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>trabalho1</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-05-07"><meta name="DC.source" content="trabalho1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Load robotics toolbox</a></li><li><a href="#2">Smaller precision for easier visualization</a></li><li><a href="#3">Find transformation matrix</a></li><li><a href="#4">Inverse kinematics</a></li><li><a href="#5">Create model so we can visualize this robot</a></li><li><a href="#6">Old precision settings</a></li><li><a href="#7">Turn the plot into an animation</a></li><li><a href="#8">Robot animation</a></li></ul></div><h2>Load robotics toolbox<a name="1"></a></h2><pre class="codeinput">clc, clear <span class="string">all</span>, close <span class="string">all</span>
+addpath(<span class="string">'../rvctools'</span>)
+startup_rvc
+</pre><pre class="codeoutput">Robotics, Vision &amp; Control: (c) Peter Corke 1992-2011 http://www.petercorke.com
+- Robotics Toolbox for Matlab (release 9.10)
+ - pHRIWARE (release 1.1): pHRIWARE is Copyrighted by Bryan Moutrie (2013-2015) (c)
+Run rtbdemo to explore the toolbox
+</pre><h2>Smaller precision for easier visualization<a name="2"></a></h2><pre class="codeinput">old = digits(6);
+</pre><h2>Find transformation matrix<a name="3"></a></h2><pre class="codeinput">d1 = 1;
+d2 = 2;
+d6 = 1;
+<span class="comment">% We define pi as a symbolic in order to eliminate numeric errors in the</span>
+<span class="comment">% calculation of our matrixes</span>
+syms <span class="string">d3</span> <span class="string">t1</span> <span class="string">t2</span> <span class="string">t4</span> <span class="string">t5</span> <span class="string">t6</span> <span class="string">pi</span>;
+T01 = (simplify(transl(0,0,d1)*trotz(t1+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T12 = (simplify(transl(0,0,d2)*trotz(t2+pi)*transl(0,0,0)*trotx(pi/2)));
+T23 = (simplify(transl(0,0,d3)*trotz(pi)*transl(0,0,0)*trotx(pi/2)));
+T03 = vpa(simplify(T01*T12*T23))
+T34 = (simplify(transl(0,0,0)*trotz(t4+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T45 = (simplify(transl(0,0,0)*trotz(t5+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T56 = (simplify(transl(0,0,d6)*trotz(t6)*transl(0,0,0)*trotx(0)));
+T36 = vpa(simplify(T34*T45*T56))
+<span class="comment">% Find the rotation matrixes</span>
+R03 = T03(1:3, 1:3)
+R36 = T36(1:3, 1:3)
+clear <span class="string">pi</span>
+</pre><pre class="codeoutput"> 
+T03 =
+ 
+[ -1.0*cos(t2)*sin(t1),      sin(t1)*sin(t2), cos(t1),     2.0*cos(t1) + d3*sin(t1)*sin(t2)]
+[      cos(t1)*cos(t2), -1.0*cos(t1)*sin(t2), sin(t1), 2.0*sin(t1) - 1.0*d3*cos(t1)*sin(t2)]
+[              sin(t2),              cos(t2),       0,                     d3*cos(t2) + 1.0]
+[                    0,                    0,       0,                                  1.0]
+ 
+ 
+T36 =
+ 
+[     cos(t4)*sin(t6) + cos(t6)*sin(t4)*sin(t5), cos(t4)*cos(t6) - 1.0*sin(t4)*sin(t5)*sin(t6), -1.0*cos(t5)*sin(t4), -1.0*cos(t5)*sin(t4)]
+[ sin(t4)*sin(t6) - 1.0*cos(t4)*cos(t6)*sin(t5),     cos(t6)*sin(t4) + cos(t4)*sin(t5)*sin(t6),      cos(t4)*cos(t5),      cos(t4)*cos(t5)]
+[                               cos(t5)*cos(t6),                          -1.0*cos(t5)*sin(t6),              sin(t5),              sin(t5)]
+[                                             0,                                             0,                    0,                  1.0]
+ 
+ 
+R03 =
+ 
+[ -1.0*cos(t2)*sin(t1),      sin(t1)*sin(t2), cos(t1)]
+[      cos(t1)*cos(t2), -1.0*cos(t1)*sin(t2), sin(t1)]
+[              sin(t2),              cos(t2),       0]
+ 
+ 
+R36 =
+ 
+[     cos(t4)*sin(t6) + cos(t6)*sin(t4)*sin(t5), cos(t4)*cos(t6) - 1.0*sin(t4)*sin(t5)*sin(t6), -1.0*cos(t5)*sin(t4)]
+[ sin(t4)*sin(t6) - 1.0*cos(t4)*cos(t6)*sin(t5),     cos(t6)*sin(t4) + cos(t4)*sin(t5)*sin(t6),      cos(t4)*cos(t5)]
+[                               cos(t5)*cos(t6),                          -1.0*cos(t5)*sin(t6),              sin(t5)]
+ 
+</pre><h2>Inverse kinematics<a name="4"></a></h2><pre class="codeinput">O = [1; -3; 4]
+R = [-1, 0, 0;
+    0, 1, 0;
+    0, 0, -1]
+Oc = O - d6*R*([0; 0; 1]);
+xc = Oc(1);
+yc = Oc(2);
+zc = Oc(3);
+teta1 = atan2(yc, xc) - atan2(-sqrt(xc^2 + yc^2 - d2^2), d2)
+teta2 = pi/2 - atan2(zc - d1, sqrt(xc^2 + yc^2 - d2^2))
+de3 = sqrt(xc^2 + yc^2 - d2^2 + (zc-d1)^2)
+<span class="comment">% Insert this values into R03 and R36 matrix</span>
+R03r = subs(R03, t1, teta1);
+R03r = subs(R03r, t2, teta2);
+R03r = subs(R03r, d3, de3);
+<span class="comment">% From the equation R36 == Rmul, we can find an analytical solution</span>
+<span class="comment">% represented by the following code</span>
+Rmul = vpa(simplify(R03r'*R));
+<span class="keyword">if</span>(Rmul(1,3) == 0 &amp;&amp; Rmul(2,3) == 0)
+    <span class="keyword">if</span>(Rmul(3,3) ==1)
+        teta5 = pi/2
+        teta4 = 0
+        teta6 = eval(atan2(Rmul(2,2),-Rmul(2,1)))
+    <span class="keyword">else</span>
+        teta5 = -pi/2
+        teta4 = eval(atan2(Rmul(2,2),Rmul(2,1)))
+        teta6 = 0
+    <span class="keyword">end</span>
+<span class="keyword">else</span>
+    teta5 = eval(atan2(Rmul(3,3),sqrt(1-Rmul(3,3)^2)))
+    teta4 = eval(atan2(-Rmul(1,3),Rmul(2,3)))
+    teta6 = eval(atan2(-Rmul(3,2),Rmul(3,1)))
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+O =
+
+     1
+    -3
+     4
+
+
+R =
+
+    -1     0     0
+     0     1     0
+     0     0    -1
+
+
+teta1 =
+
+   -0.3630
+
+
+teta2 =
+
+    0.5495
+
+
+de3 =
+
+    4.6904
+
+
+teta5 =
+
+     0
+
+
+teta4 =
+
+    2.5921
+
+
+teta6 =
+
+    2.7786
+
+</pre><h2>Create model so we can visualize this robot<a name="5"></a></h2><pre class="codeinput">L1 = Link([0, d1, 0, pi/2, 0]) ;
+L2 = Link([0, d2, 0, pi/2, 0]) ;
+L3 = Link([pi, 0, 0, pi/2, 1]) ;
+L4 = Link([0, 0, 0, pi/2, 0]) ;
+L5 = Link([0, 0, 0, pi/2, 0]) ;
+L6 = Link([0, d6, 0, 0, 0]) ;
+bot = SerialLink([L1, L2, L3, L4, L5, L6], <span class="string">'name'</span>, <span class="string">'stanford'</span>)
+bot.plotopt={<span class="string">'workspace'</span>, [-6 6 -6 6 -6 6], <span class="string">'movie'</span>, <span class="string">'animation'</span>};
+q0 = [pi/2, pi, 0, pi/2, pi/2, 0]; <span class="comment">% Offset of the initial state.</span>
+q = jtraj(q0, [teta1, teta2, de3, teta4, teta5, teta6]+q0, [0:0.05:2]');
+<span class="comment">%Show foward kinematics for the desired final position so we can verify if</span>
+<span class="comment">%it is working correctly</span>
+foward_kin = bot.fkine([teta1, teta2, de3, teta4, teta5, teta6]+q0)
+bot.plot(q);
+</pre><pre class="codeoutput"> 
+bot = 
+ 
+stanford (6 axis, RRPRRR, stdDH, slowRNE)                        
+                                                                 
++---+-----------+-----------+-----------+-----------+-----------+
+| j |     theta |         d |         a |     alpha |    offset |
++---+-----------+-----------+-----------+-----------+-----------+
+|  1|         q1|          1|          0|      1.571|          0|
+|  2|         q2|          2|          0|      1.571|          0|
+|  3|      3.142|         q3|          0|      1.571|          0|
+|  4|         q4|          0|          0|      1.571|          0|
+|  5|         q5|          0|          0|      1.571|          0|
+|  6|         q6|          1|          0|          0|          0|
++---+-----------+-----------+-----------+-----------+-----------+
+                                                                 
+grav =    0  base = 1  0  0  0   tool =  1  0  0  0              
+          0         0  1  0  0           0  1  0  0              
+       9.81         0  0  1  0           0  0  1  0              
+                    0  0  0  1           0  0  0  1              
+ 
+
+foward_kin =
+
+   -1.0000   -0.0000    0.0000    1.0000
+   -0.0000    1.0000    0.0000   -3.0000
+   -0.0000    0.0000   -1.0000    4.0000
+         0         0         0    1.0000
+
+</pre><img vspace="5" hspace="5" src="trabalho1_01.png" alt=""> <h2>Old precision settings<a name="6"></a></h2><pre class="codeinput">digits(old)
+</pre><h2>Turn the plot into an animation<a name="7"></a></h2><pre class="codeinput"><span class="syscmd">!convert -delay 5 animation/* animation.gif</span>
+</pre><h2>Robot animation<a name="8"></a></h2><p><img vspace="5" hspace="5" src="animation.gif" alt=""> </p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Load robotics toolbox
+clc, clear all, close all
+addpath('../rvctools')
+startup_rvc
+%% Smaller precision for easier visualization
+old = digits(6);
+%% Find transformation matrix
+d1 = 1;
+d2 = 2;
+d6 = 1;
+% We define pi as a symbolic in order to eliminate numeric errors in the
+% calculation of our matrixes
+syms d3 t1 t2 t4 t5 t6 pi;
+T01 = (simplify(transl(0,0,d1)*trotz(t1+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T12 = (simplify(transl(0,0,d2)*trotz(t2+pi)*transl(0,0,0)*trotx(pi/2)));
+T23 = (simplify(transl(0,0,d3)*trotz(pi)*transl(0,0,0)*trotx(pi/2)));
+T03 = vpa(simplify(T01*T12*T23))
+T34 = (simplify(transl(0,0,0)*trotz(t4+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T45 = (simplify(transl(0,0,0)*trotz(t5+pi/2)*transl(0,0,0)*trotx(pi/2)));
+T56 = (simplify(transl(0,0,d6)*trotz(t6)*transl(0,0,0)*trotx(0)));
+T36 = vpa(simplify(T34*T45*T56))
+% Find the rotation matrixes
+R03 = T03(1:3, 1:3)
+R36 = T36(1:3, 1:3)
+clear pi
+%% Inverse kinematics
+O = [1; -3; 4]
+R = [-1, 0, 0;
+    0, 1, 0;
+    0, 0, -1]
+Oc = O - d6*R*([0; 0; 1]);
+xc = Oc(1);
+yc = Oc(2);
+zc = Oc(3);
+teta1 = atan2(yc, xc) - atan2(-sqrt(xc^2 + yc^2 - d2^2), d2)
+teta2 = pi/2 - atan2(zc - d1, sqrt(xc^2 + yc^2 - d2^2))
+de3 = sqrt(xc^2 + yc^2 - d2^2 + (zc-d1)^2)
+% Insert this values into R03 and R36 matrix
+R03r = subs(R03, t1, teta1);
+R03r = subs(R03r, t2, teta2);
+% From the equation R36 == Rmul, we can find an analytical solution 
+% represented by the following code
+Rmul = vpa(simplify(R03r'*R));
+if(Rmul(1,3) == 0 && Rmul(2,3) == 0)
+    if(Rmul(3,3) ==1)
+        teta5 = pi/2
+        teta4 = 0
+        teta6 = eval(atan2(Rmul(2,2),-Rmul(2,1)))
+    else
+        teta5 = -pi/2
+        teta4 = eval(atan2(Rmul(2,2),Rmul(2,1)))
+        teta6 = 0
+    end
+else
+    teta5 = eval(atan2(Rmul(3,3),sqrt(1-Rmul(3,3)^2)))
+    teta4 = eval(atan2(-Rmul(1,3),Rmul(2,3)))
+    teta6 = eval(atan2(-Rmul(3,2),Rmul(3,1)))
+end
+
+%% Create model so we can visualize this robot
+L1 = Link([0, d1, 0, pi/2, 0]) ;
+L2 = Link([0, d2, 0, pi/2, 0]) ;
+L3 = Link([pi, 0, 0, pi/2, 1]) ;
+L4 = Link([0, 0, 0, pi/2, 0]) ;
+L5 = Link([0, 0, 0, pi/2, 0]) ;
+L6 = Link([0, d6, 0, 0, 0]) ;
+bot = SerialLink([L1, L2, L3, L4, L5, L6], 'name', 'stanford')
+bot.plotopt={'workspace', [-6 6 -6 6 -6 6], 'movie', 'animation'};
+q0 = [pi/2, pi, 0, pi/2, pi/2, 0]; % Offset of the initial state.
+q = jtraj(q0, [teta1, teta2, de3, teta4, teta5, teta6]+q0, [0:0.05:2]');
+%Show foward kinematics for the desired final position so we can verify if
+%it is working correctly
+foward_kin = bot.fkine([teta1, teta2, de3, teta4, teta5, teta6]+q0)
+bot.plot(q);
+
+%% Old precision settings
+digits(old)
+%% Turn the plot into an animation
+!convert -delay 5 animation/* animation.gif
+%% Robot animation
+%
+% <<animation.gif>>
+%
+##### SOURCE END #####
+--></body></html>
