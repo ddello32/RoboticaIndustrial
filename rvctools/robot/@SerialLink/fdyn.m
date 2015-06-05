@@ -67,7 +67,7 @@ function [t, q, qd] = fdyn(robot, t1, torqfun, q0, qd0, varargin)
     if verLessThan('matlab', '7')  
         error('fdyn now requires Matlab version >= 7');
     end
-
+    
     n = robot.n;
     if nargin == 2
         torqfun = 0;
