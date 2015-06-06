@@ -2,7 +2,7 @@
 
 close all, clear all
 
-%% Load robotic toolbox if necessary
+%% Carrega robotics toolbox se preciso
 if(~exist('rvctools', 'dir'))
     addpath('../rvctools')
     addpath('../rvctools/simulink')

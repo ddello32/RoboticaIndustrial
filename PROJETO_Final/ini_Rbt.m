@@ -1,11 +1,5 @@
 close all, clear all
 
-%ini_Rbt.m
-addpath('../rvctools')
-addpath('../rvctools/simulink')
-startup_rvc
-
-
 q0=[0 0 0 0 0 0 0];
 q1b=[3*pi .1745 pi/3 pi/2 .5236 pi/1.5 0];
 q1=[.0873 .1745 .3491 .1745 .5236 .8727 0];
@@ -35,4 +29,4 @@ traj4=jtraj(q3,q4,t);
 traj5=jtraj(q4,q5,t);
 traj6=jtraj(q5,q0,t);
 
- Rbt.plot(traj1)
+Rbt.plot(traj1, 'noshading', 'notiles')
