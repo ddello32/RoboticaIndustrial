@@ -51,8 +51,5 @@ bot.plot(traj1, 'noshading', 'notiles')
 for i=1: length(t)
     bot.plot(traj(i,:), 'noshading', 'notiles')
     atj=bot.fkine(traj(i,:));
-    jta=transpose(atj);
-    JTA(i,:)=jta(4,1:3);
-    jta=JTA;
-    plot2(jta(i,:),'ro')
+    plot2(atj(1:3,4)','ro')
 end

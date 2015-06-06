@@ -23,9 +23,9 @@ qdes = [0 pi/2 -pi/2 0 0 0];
 % velocidades angulares e acelerações nulas
 T = bot.rne(qdes, zeros(1,6), zeros(1,6));
 
-% Carrega o modelo simulink
-model = 'parte1simulink';
-load_system(model);
+% %% Carrega o modelo simulink
+% model = 'parte1simulink';
+% load_system(model);
 
 
 % %% Simulacao 1
@@ -331,10 +331,3 @@ figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Fix eps
 !epsfixer.sh
-
-
-
-
-
-
-  
