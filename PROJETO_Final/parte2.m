@@ -58,6 +58,7 @@ for i = 2:length(t)
     traj(i,:) = bot.ikine(pos, traj(i-1,:), [1 1 1 0 0 0]);
 end
 %% Plot
+figure,
 hold on
 view([30, 45])
 xlim([-40,40])

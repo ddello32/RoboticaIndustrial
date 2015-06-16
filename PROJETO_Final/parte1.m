@@ -80,7 +80,7 @@ T = bot.rne(qdes, zeros(1,6), zeros(1,6));
 %% Simulacao 1
 q0 = [0 0 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn1, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn1, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim1ode = figure;
 plot(time, qdyn1);
 xlabel('Tempo(s)')
@@ -93,7 +93,7 @@ bot.plot(qdyn1, 'delay', 5/length(time))
 %% Simulacao 2
 q0 = [0 pi -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn2, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn2, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim2ode = figure;
 plot(time, qdyn2);
 xlabel('Tempo(s)')
@@ -106,7 +106,7 @@ bot.plot(qdyn2, 'delay', 5/length(time))
 %% Simulacao 3
 q0 = [0 pi/2 -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn3, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn3, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim3ode = figure;
 plot(time, qdyn3);
 xlabel('Tempo(s)')
@@ -119,7 +119,7 @@ bot.plot(qdyn3, 'delay', 5/length(time))
 %% Simulacao 4
 q0 = [0 pi/2+0.05 -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn4, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn4, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim4ode = figure;
 plot(time, qdyn4);
 xlabel('Tempo(s)')
@@ -135,7 +135,7 @@ T = [0 0 0 0 0 0];
 %% Simulacao 1
 q0 = [0 0 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = p560.nofriction('all').fdyn(5, T, q0, qd0);
+[time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
 sime1ode = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
@@ -160,7 +160,7 @@ p560.plot(qdyn, 'delay', 5/length(time))
 %% Simulacao 2
 q0 = [0 0.000001 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, T, q0, qd0);
+[time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
 sime2ode = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
@@ -186,7 +186,7 @@ p560.plot(qdyn, 'delay', 30/length(time))
 %% Simulacao 1
 q0 = [0 0 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sime1odea = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
@@ -211,7 +211,7 @@ bot.plot(qdyn, 'delay', 5/length(time))
 %% Simulacao 2
 q0 = [0 0.000001 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = bot.fdyn(5, T, q0, qd0);
+[time, qdyn, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sime2odea = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
