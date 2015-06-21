@@ -22,60 +22,6 @@ qdes = [0 pi/2 -pi/2 0 0 0];
 % Calcula o torque nescessário para manter a posição desejada com
 % velocidades angulares e acelerações nulas
 T = bot.rne(qdes, zeros(1,6), zeros(1,6));
-
-% %% Carrega o modelo simulink
-% model = 'parte1simulink';
-% load_system(model);
-
-
-% %% Simulacao 1
-% q0 = [0 0 0 0 0 0]; %Posicao inicial
-% sim(model);
-% sim1 = figure;
-% plot(states);
-% xlabel('Tempo(s)')
-% ylabel('Angulo(rad)')
-% title('Resposta de q')
-% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-% saveas(sim1,'sim1.eps','epsc')
-% figure,
-% bot.plot(states.Data, 'delay', 5/length(states.Time));
-% %% Simulacao 2
-% q0 = [0 pi -pi/2 0 0 0]; %Posicao inicial
-% sim(model);
-% sim2 = figure;
-% plot(states);
-% xlabel('Tempo(s)')
-% ylabel('Angulo(rad)')
-% title('Resposta de q')
-% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-% saveas(sim2,'sim2.eps','epsc')
-% figure,
-% bot.plot(states.Data, 'delay', 5/length(states.Time));
-% %% Simulacao 3
-% q0 = [0 pi/2 -pi/2 0 0 0]; %Posicao inicial
-% sim(model);
-% sim3 = figure;
-% plot(states);
-% xlabel('Tempo(s)')
-% ylabel('Angulo(rad)')
-% title('Resposta de q')
-% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-% saveas(sim3,'sim3.eps','epsc')
-% figure,
-% bot.plot(states.Data, 'delay', 5/length(states.Time));
-% %% Simulacao 4
-% q0 = [0 pi/2+0.05 -pi/2 0 0 0]; %Posicao inicial
-% sim(model);
-% sim4 = figure;
-% plot(states);
-% xlabel('Tempo(s)')
-% ylabel('Angulo(rad)')
-% title('Resposta de q')
-% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-% saveas(sim4,'sim4.eps','epsc')
-% figure,
-% bot.plot(states.Data, 'delay', 5/length(states.Time));
 %% Simulacoes usando o ode45
 %% Simulacao 1
 q0 = [0 0 0 0 0 0] %Posicao inicial
@@ -257,7 +203,7 @@ bot.gravity = [0;0;0];
 %% Simulaçao 1
 q0 = [0 0 0 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-qref = [pi/2 0 -pi/2 pi pi/2 -pi] %Posicao deseijada
+qref = [pi/2 0 -pi/2 pi pi/2 -pi] %Posicao desejada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
 sim1cl = figure;
 plot(time, qdyn);
@@ -282,7 +228,7 @@ bot.plot(qdyn, 'delay', 5/length(time))
 %% Simulaçao 2
 q0 = [0 pi -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
-qref = [pi 0 0 pi -pi/2 0] %Posicao deseijada
+qref = [pi 0 0 pi -pi/2 0] %Posicao desejada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
 sim1cl = figure;
 plot(time, qdyn);
@@ -330,4 +276,6 @@ saveas(sim1clu,'sim1clu.eps','epsc')
 figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Fix eps
+% Necessário para concertar encoding imagens exportadas no formato .eps no
+% linux
 !epsfixer.sh
