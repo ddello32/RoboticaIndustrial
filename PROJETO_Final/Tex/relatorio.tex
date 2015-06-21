@@ -270,8 +270,97 @@ q_{init}=\begin{bmatrix}
 %TODO: Comentar simulações
 
 \subsection{Controle em malha fechada}
+Para fazer um controle efetivo do robô, iremos agora considerar um controlador para o sistema em malha fechada. Ao fechar a malha, temos como entrada do controlador a diferença entre a referência e a saída, também chamada de erro. Conforme proposto na tese\cite{bb:tese} que estamos utilizando como base, iremos implementar um controlador PD, considerando cada uma das juntas como um sistema SISO.
 
+Utilizando como base os ganhos $K_p$ e $K_d$ do controlador calculado para o robô da tese, aprimoramos seus valores e chegamos em $K_p$ e $K_d$ dados pelas equações \ref{eq:kp} e \ref{eq:kd}. %TODO: Colocar valores do controlador
 
+\begin{equation}
+\label{eq:kp}
+\tau=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\label{eq:kd}
+\tau=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}
+\end{equation}
+
+\subsubsection{Simulação 7}
+Condições iniciais e referência:
+\begin{equation}
+\label{eq:sim7q}
+q_{init}=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim7qd}
+\dot{q_{init}}=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim7qr}
+q_{ref}=\begin{bmatrix}
+\frac{\pi}{2} & 0 & -\frac{\pi}{2} & \pi & \frac{\pi}{2} & -\pi
+\end{bmatrix}^T
+\end{equation}
+
+\subsubsection{Simulação 8}
+Condições iniciais e referência:
+\begin{equation}
+\label{eq:sim8q}
+q_{init}=\begin{bmatrix}
+0 & \pi & -\frac{\pi}{2} & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim8qd}
+\dot{q_{init}}=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim8qr}
+q_{ref}=\begin{bmatrix}
+\pi & 0 & 0 & \pi & -\frac{\pi}{2} & 0
+\end{bmatrix}^T
+\end{equation}
+
+\subsubsection{Simulação 9}
+Condições iniciais e referência:
+\begin{equation}
+\label{eq:sim9q}
+q_{init}=\begin{bmatrix}
+0 & \frac{\pi}{2} & -\frac{\pi}{2} & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim9qd}
+\dot{q_{init}}=\begin{bmatrix}
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}^T
+\end{equation}
+\begin{equation}
+\label{eq:sim9qr}
+q_{ref}=\begin{bmatrix}
+-\pi & \pi & -\pi & -\pi & -\frac{\pi}{2} & \pi
+\end{bmatrix}^T
+\end{equation}
+
+%TODO: comentar sobre as simulações
 
 \section{Cinemática}
 \subsection{Controle de Trajetória}
