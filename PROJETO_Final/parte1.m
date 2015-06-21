@@ -48,7 +48,7 @@ title('Resposta de q')
 legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
 saveas(sim2ode,'sim2ode.eps','epsc')
 figure,
-bot.plot(qdyn2, 'delay', 5/length(time))
+bot.plot(qdyn2, 'delay', 5/length(time), 'movie', 'sim2ode')
 %% Simulacao 3
 q0 = [0 pi/2 -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
@@ -79,54 +79,54 @@ bot.plot(qdyn4, 'delay', 5/length(time))
 T = [0 0 0 0 0 0];
 %% Sem atrito seco e viscoso
 %% Simulacao 1
-q0 = [0 0 0 0 0 0] %Posicao inicial
-qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
-sime1ode = figure;
-plot(time, qdyn);
-xlabel('Tempo(s)')
-ylabel('Angulo(rad)')
-title('Resposta de q')
-legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sime1ode,'sime1ode.eps','epsc')
-sime1kin = figure;
-m = p560.nofriction('all').inertia(qdyn);
-e = zeros(1, length(qdyn));
-for i = 1:length(qdyn)
-    e(i) = 1/2*qddyn(i,:)*m(:,:,i)*qddyn(i,:)';
-end
-plot(time, e);
-xlabel('Tempo(s)')
-ylabel('Energia(J)')
-title('Energia cinetica do sistema')
-saveas(sime1kin,'sime1kin.eps','epsc')
-figure,
-p560.plot(qdyn, 'delay', 5/length(time))
-
-%% Simulacao 2
-q0 = [0 0.000001 0 0 0 0] %Posicao inicial
-qd0 = [0 0 0 0 0 0] %Velocidade inicial
-[time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
-sime2ode = figure;
-plot(time, qdyn);
-xlabel('Tempo(s)')
-ylabel('Angulo(rad)')
-title('Resposta de q')
-legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sime2ode,'sime2ode.eps','epsc')
-sime2kin = figure;
-m = p560.nofriction('all').inertia(qdyn);
-e = zeros(1, length(qdyn));
-for i = 1:length(qdyn)
-    e(i) = 1/2*qddyn(i,:)*m(:,:,i)*qddyn(i,:)';
-end
-plot(time, e);
-xlabel('Tempo(s)')
-ylabel('Energia(J)')
-title('Energia cinetica do sistema')
-saveas(sime2kin,'sime2kin.eps','epsc')
-figure,
-p560.plot(qdyn, 'delay', 30/length(time))
+% q0 = [0 0 0 0 0 0] %Posicao inicial
+% qd0 = [0 0 0 0 0 0] %Velocidade inicial
+% [time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
+% sime1ode = figure;
+% plot(time, qdyn);
+% xlabel('Tempo(s)')
+% ylabel('Angulo(rad)')
+% title('Resposta de q')
+% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
+% saveas(sime1ode,'sime1ode.eps','epsc')
+% sime1kin = figure;
+% m = p560.nofriction('all').inertia(qdyn);
+% e = zeros(1, length(qdyn));
+% for i = 1:length(qdyn)
+%     e(i) = 1/2*qddyn(i,:)*m(:,:,i)*qddyn(i,:)';
+% end
+% plot(time, e);
+% xlabel('Tempo(s)')
+% ylabel('Energia(J)')
+% title('Energia cinetica do sistema')
+% saveas(sime1kin,'sime1kin.eps','epsc')
+% figure,
+% p560.plot(qdyn, 'delay', 5/length(time), 'movie', 'sime1ode')
+% 
+% %% Simulacao 2
+% q0 = [0 0.000001 0 0 0 0] %Posicao inicial
+% qd0 = [0 0 0 0 0 0] %Velocidade inicial
+% [time, qdyn, qddyn] = p560.nofriction('all').fdyn(30, @ConstTau, q0, qd0, T);
+% sime2ode = figure;
+% plot(time, qdyn);
+% xlabel('Tempo(s)')
+% ylabel('Angulo(rad)')
+% title('Resposta de q')
+% legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
+% saveas(sime2ode,'sime2ode.eps','epsc')
+% sime2kin = figure;
+% m = p560.nofriction('all').inertia(qdyn);
+% e = zeros(1, length(qdyn));
+% for i = 1:length(qdyn)
+%     e(i) = 1/2*qddyn(i,:)*m(:,:,i)*qddyn(i,:)';
+% end
+% plot(time, e);
+% xlabel('Tempo(s)')
+% ylabel('Energia(J)')
+% title('Energia cinetica do sistema')
+% saveas(sime2kin,'sime2kin.eps','epsc')
+% figure,
+% p560.plot(qdyn, 'delay', 30/length(time), 'movie', 'sime2ode')
 
 %% Com atrito
 %% Simulacao 1
@@ -230,14 +230,14 @@ q0 = [0 pi -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
 qref = [pi 0 0 pi -pi/2 0] %Posicao desejada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim2cl = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
 ylabel('Angulo(rad)')
 title('Resposta de q')
 legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sim1cl,'sim1cl.eps','epsc')
-sim1clu = figure;
+saveas(sim2cl,'sim2cl.eps','epsc')
+sim2clu = figure;
 effort = zeros(size(qddyn));
 for i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -247,7 +247,7 @@ xlabel('Tempo(s)')
 ylabel('Torque(Nm)')
 title('Esforço de Controle')
 legend('\tau_1', '\tau_2', '\tau_3', '\tau_4', '\tau_5', '\tau_6');
-saveas(sim1clu,'sim1clu.eps','epsc')
+saveas(sim2clu,'sim2clu.eps','epsc')
 figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Simulaçao 3
@@ -255,14 +255,14 @@ q0 = [0 pi/2 -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
 qref = [-pi pi -pi -pi -pi/2 pi] %Posicao deseijada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim3cl = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
 ylabel('Angulo(rad)')
 title('Resposta de q')
 legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sim1cl,'sim1cl.eps','epsc')
-sim1clu = figure;
+saveas(sim3cl,'sim3cl.eps','epsc')
+sim3clu = figure;
 effort = zeros(size(qddyn));
 for i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -272,7 +272,7 @@ xlabel('Tempo(s)')
 ylabel('Torque(Nm)')
 title('Esforço de Controle')
 legend('\tau_1', '\tau_2', '\tau_3', '\tau_4', '\tau_5', '\tau_6');
-saveas(sim1clu,'sim1clu.eps','epsc')
+saveas(sim3clu,'sim3clu.eps','epsc')
 figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Fix eps

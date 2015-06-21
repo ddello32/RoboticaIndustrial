@@ -102,7 +102,7 @@ qd0 =
 
      0     0     0     0     0     0
 
-</pre><img vspace="5" hspace="5" src="parte1_01.png" alt=""> <img vspace="5" hspace="5" src="parte1_02.png" alt=""> <h2>Simulacao 2<a name="6"></a></h2><pre class="codeinput">q0 = [0 pi -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
+</pre><img vspace="5" hspace="5" src="parte1_01.png" alt=""> <img vspace="5" hspace="5" src="sim1ode.gif" loop=infinite alt=""> <h2>Simulacao 2<a name="6"></a></h2><pre class="codeinput">q0 = [0 pi -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 [time, qdyn2, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim2ode = figure;
@@ -124,7 +124,7 @@ qd0 =
 
      0     0     0     0     0     0
 
-</pre><img vspace="5" hspace="5" src="parte1_03.png" alt=""> <img vspace="5" hspace="5" src="parte1_04.png" alt=""> <h2>Simulacao 3<a name="7"></a></h2><pre class="codeinput">q0 = [0 pi/2 -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
+</pre><img vspace="5" hspace="5" src="parte1_03.png" alt=""> <img vspace="5" hspace="5" src="sim2ode.gif" loop=infinite alt=""> <h2>Simulacao 3<a name="7"></a></h2><pre class="codeinput">q0 = [0 pi/2 -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 [time, qdyn3, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sim3ode = figure;
@@ -168,7 +168,7 @@ qd0 =
 
      0     0     0     0     0     0
 
-</pre><img vspace="5" hspace="5" src="sim4.png" alt=""><img vspace="5" hspace="5" src="parte1_06.png" alt=""> <h2>Simulacoes em malha aberta se&ccedil;&atilde;o 6.4<a name="9"></a></h2><pre class="codeinput">T = [0 0 0 0 0 0];
+</pre><img vspace="5" hspace="5" src="sim4.png" alt=""><img vspace="5" hspace="5" src="sim4ode.gif" loop=infinite alt=""> <h2>Simulacoes em malha aberta se&ccedil;&atilde;o 6.4<a name="9"></a></h2><pre class="codeinput">T = [0 0 0 0 0 0];
 </pre><h2>Sem atrito seco e viscoso<a name="10"></a></h2><h2>Simulacao 1<a name="11"></a></h2><pre class="codeinput">q0 = [0 0 0 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 [time, qdyn, qddyn] = p560.nofriction(<span class="string">'all'</span>).fdyn(30, @ConstTau, q0, qd0, T);
@@ -270,7 +270,7 @@ qd0 =
 
      0     0     0     0     0     0
 
-</pre><img vspace="5" hspace="5" src="parte1_14.png" alt=""> <img vspace="5" hspace="5" src="parte1_15.png" alt=""> <img vspace="5" hspace="5" src="parte1_13.png" alt=""><h2>Simulacao 2<a name="15"></a></h2><pre class="codeinput">q0 = [0 0.000001 0 0 0 0] <span class="comment">%Posicao inicial</span>
+</pre><img vspace="5" hspace="5" src="parte1_14.png" alt=""> <img vspace="5" hspace="5" src="parte1_15.png" alt=""> <img vspace="5" hspace="5" src="sime1ode.gif" alt=""><h2>Simulacao 2<a name="15"></a></h2><pre class="codeinput">q0 = [0 0.000001 0 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 [time, qdyn, qddyn] = bot.fdyn(5, @ConstTau, q0, qd0, T);
 sime2odea = figure;
@@ -305,7 +305,7 @@ qd0 =
 
      0     0     0     0     0     0
 
-</pre><img vspace="5" hspace="5" src="parte1_17.png" alt=""> <img vspace="5" hspace="5" src="parte1_18.png" alt=""> <img vspace="5" hspace="5" src="parte1_19.png" alt=""> <h2>Simulacoes em malha fechada<a name="16"></a></h2><p>Analisando o robo na posi&ccedil;&atilde;o com o bra&ccedil;o esticado ao longo do eixo X, como foi feito na tese temos:</p><pre class="codeinput">bot.rne(qs, zeros(1,6), zeros(1,6))
+</pre><img vspace="5" hspace="5" src="parte1_17.png" alt=""> <img vspace="5" hspace="5" src="parte1_18.png" alt=""> <img vspace="5" hspace="5" src="sime2odea.gif" loop=infinte alt=""> <h2>Simulacoes em malha fechada<a name="16"></a></h2><p>Analisando o robo na posi&ccedil;&atilde;o com o bra&ccedil;o esticado ao longo do eixo X, como foi feito na tese temos:</p><pre class="codeinput">bot.rne(qs, zeros(1,6), zeros(1,6))
 <span class="comment">% Comparamos esse valor com o valor que &eacute; apresentado na equa&ccedil;&atilde;o 6.21 e</span>
 <span class="comment">% estimamos que os torques com que n&oacute;s trabalhamos s&atilde;o aproximadamente 3</span>
 <span class="comment">% vezes menores que os torques que foram trabalhados na tese.</span>
@@ -387,18 +387,18 @@ qref =
 
     1.5708         0   -1.5708    3.1416    1.5708   -3.1416
 
-</pre><img vspace="5" hspace="5" src="parte1_22.png" alt=""> <img vspace="5" hspace="5" src="parte1_23.png" alt=""> <img vspace="5" hspace="5" src="parte1_24.png" alt=""> <h2>Simula&ccedil;ao 2<a name="18"></a></h2><pre class="codeinput">q0 = [0 pi -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
+</pre><img vspace="5" hspace="5" src="parte1_22.png" alt=""> <img vspace="5" hspace="5" src="parte1_23.png" alt=""> <img vspace="5" hspace="5" src="sim1cl.gif" loop=infite alt=""> <h2>Simula&ccedil;ao 2<a name="18"></a></h2><pre class="codeinput">q0 = [0 pi -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 qref = [pi 0 0 pi -pi/2 0] <span class="comment">%Posicao desejada</span>
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim2cl = figure;
 plot(time, qdyn);
 xlabel(<span class="string">'Tempo(s)'</span>)
 ylabel(<span class="string">'Angulo(rad)'</span>)
 title(<span class="string">'Resposta de q'</span>)
 legend(<span class="string">'q_1'</span>, <span class="string">'q_2'</span>, <span class="string">'q_3'</span>, <span class="string">'q_4'</span>, <span class="string">'q_5'</span>, <span class="string">'q_6'</span>);
-saveas(sim1cl,<span class="string">'sim1cl.eps'</span>,<span class="string">'epsc'</span>)
-sim1clu = figure;
+saveas(sim2cl,<span class="string">'sim2cl.eps'</span>,<span class="string">'epsc'</span>)
+sim2clu = figure;
 effort = zeros(size(qddyn));
 <span class="keyword">for</span> i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -408,7 +408,7 @@ xlabel(<span class="string">'Tempo(s)'</span>)
 ylabel(<span class="string">'Torque(Nm)'</span>)
 title(<span class="string">'Esfor&ccedil;o de Controle'</span>)
 legend(<span class="string">'\tau_1'</span>, <span class="string">'\tau_2'</span>, <span class="string">'\tau_3'</span>, <span class="string">'\tau_4'</span>, <span class="string">'\tau_5'</span>, <span class="string">'\tau_6'</span>);
-saveas(sim1clu,<span class="string">'sim1clu.eps'</span>,<span class="string">'epsc'</span>)
+saveas(sim2clu,<span class="string">'sim2clu.eps'</span>,<span class="string">'epsc'</span>)
 figure,
 bot.plot(qdyn, <span class="string">'delay'</span>, 5/length(time))
 </pre><pre class="codeoutput">
@@ -426,18 +426,18 @@ qref =
 
     3.1416         0         0    3.1416   -1.5708         0
 
-</pre><img vspace="5" hspace="5" src="parte1_26.png" alt=""> <img vspace="5" hspace="5" src="parte1_27.png" alt=""> <img vspace="5" hspace="5" src="parte1_28.png" alt=""> <h2>Simula&ccedil;ao 3<a name="19"></a></h2><pre class="codeinput">q0 = [0 pi/2 -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
+</pre><img vspace="5" hspace="5" src="parte1_26.png" alt=""> <img vspace="5" hspace="5" src="parte1_27.png" alt=""> <img vspace="5" hspace="5" src="sim2cl.gif" loop=infinite alt=""> <h2>Simula&ccedil;ao 3<a name="19"></a></h2><pre class="codeinput">q0 = [0 pi/2 -pi/2 0 0 0] <span class="comment">%Posicao inicial</span>
 qd0 = [0 0 0 0 0 0] <span class="comment">%Velocidade inicial</span>
 qref = [-pi pi -pi -pi -pi/2 pi] <span class="comment">%Posicao deseijada</span>
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim3cl = figure;
 plot(time, qdyn);
 xlabel(<span class="string">'Tempo(s)'</span>)
 ylabel(<span class="string">'Angulo(rad)'</span>)
 title(<span class="string">'Resposta de q'</span>)
 legend(<span class="string">'q_1'</span>, <span class="string">'q_2'</span>, <span class="string">'q_3'</span>, <span class="string">'q_4'</span>, <span class="string">'q_5'</span>, <span class="string">'q_6'</span>);
-saveas(sim1cl,<span class="string">'sim1cl.eps'</span>,<span class="string">'epsc'</span>)
-sim1clu = figure;
+saveas(sim3cl,<span class="string">'sim3cl.eps'</span>,<span class="string">'epsc'</span>)
+sim3clu = figure;
 effort = zeros(size(qddyn));
 <span class="keyword">for</span> i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -447,7 +447,7 @@ xlabel(<span class="string">'Tempo(s)'</span>)
 ylabel(<span class="string">'Torque(Nm)'</span>)
 title(<span class="string">'Esfor&ccedil;o de Controle'</span>)
 legend(<span class="string">'\tau_1'</span>, <span class="string">'\tau_2'</span>, <span class="string">'\tau_3'</span>, <span class="string">'\tau_4'</span>, <span class="string">'\tau_5'</span>, <span class="string">'\tau_6'</span>);
-saveas(sim1clu,<span class="string">'sim1clu.eps'</span>,<span class="string">'epsc'</span>)
+saveas(sim3clu,<span class="string">'sim3clu.eps'</span>,<span class="string">'epsc'</span>)
 figure,
 bot.plot(qdyn, <span class="string">'delay'</span>, 5/length(time))
 </pre><pre class="codeoutput">
@@ -465,7 +465,7 @@ qref =
 
    -3.1416    3.1416   -3.1416   -3.1416   -1.5708    3.1416
 
-</pre><img vspace="5" hspace="5" src="sime3ode.png" alt=""> <img vspace="5" hspace="5" src="sime3kin.png" alt=""> <img vspace="5" hspace="5" src="parte1_28.png" alt=""><h2>Fix eps<a name="20"></a></h2><p>Necess&aacute;rio para concertar encoding imagens exportadas no formato .eps no linux</p><pre class="codeinput"><span class="syscmd">!epsfixer.sh</span>
+</pre><img vspace="5" hspace="5" src="sim3cl.png" alt=""> <img vspace="5" hspace="5" src="sim3clu.png" alt=""> <img vspace="5" hspace="5" src="sim3cl.gif" loop=infinite alt=""><h2>Fix eps<a name="20"></a></h2><p>Necess&aacute;rio para concertar encoding imagens exportadas no formato .eps no linux</p><pre class="codeinput"><span class="syscmd">!epsfixer.sh</span>
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Parte 1 do projeto final
@@ -700,14 +700,14 @@ q0 = [0 pi -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
 qref = [pi 0 0 pi -pi/2 0] %Posicao desejada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim2cl = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
 ylabel('Angulo(rad)')
 title('Resposta de q')
 legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sim1cl,'sim1cl.eps','epsc')
-sim1clu = figure;
+saveas(sim2cl,'sim2cl.eps','epsc')
+sim2clu = figure;
 effort = zeros(size(qddyn));
 for i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -717,7 +717,7 @@ xlabel('Tempo(s)')
 ylabel('Torque(Nm)')
 title('Esforço de Controle')
 legend('\tau_1', '\tau_2', '\tau_3', '\tau_4', '\tau_5', '\tau_6');
-saveas(sim1clu,'sim1clu.eps','epsc')
+saveas(sim2clu,'sim2clu.eps','epsc')
 figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Simulaçao 3
@@ -725,14 +725,14 @@ q0 = [0 pi/2 -pi/2 0 0 0] %Posicao inicial
 qd0 = [0 0 0 0 0 0] %Velocidade inicial
 qref = [-pi pi -pi -pi -pi/2 pi] %Posicao deseijada
 [time, qdyn, qddyn] = bot.fdyn(5, @PDControler, q0, qd0, qref, Kp, Kd);
-sim1cl = figure;
+sim3cl = figure;
 plot(time, qdyn);
 xlabel('Tempo(s)')
 ylabel('Angulo(rad)')
 title('Resposta de q')
 legend('q_1', 'q_2', 'q_3', 'q_4', 'q_5', 'q_6');
-saveas(sim1cl,'sim1cl.eps','epsc')
-sim1clu = figure;
+saveas(sim3cl,'sim3cl.eps','epsc')
+sim3clu = figure;
 effort = zeros(size(qddyn));
 for i = 1:length(qdyn)
     effort(i, :) = PDControler(0, 0, qdyn(i,:), qddyn(i,:), qref, Kp, Kd);
@@ -742,7 +742,7 @@ xlabel('Tempo(s)')
 ylabel('Torque(Nm)')
 title('Esforço de Controle')
 legend('\tau_1', '\tau_2', '\tau_3', '\tau_4', '\tau_5', '\tau_6');
-saveas(sim1clu,'sim1clu.eps','epsc')
+saveas(sim3clu,'sim3clu.eps','epsc')
 figure,
 bot.plot(qdyn, 'delay', 5/length(time))
 %% Fix eps
