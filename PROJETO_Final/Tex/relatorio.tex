@@ -164,7 +164,12 @@ q_{init}=\begin{bmatrix}
 	\label{fig:pumasim4}
 \end{figure}
 
-%TODO: Comentar simulações
+%TODO: Revisar comentário malha aberta
+Conforme podemos observar, controlar o sistema em malha aberta colocando como entrada o torque necessário $u$ para manter o robô em uma determinada posição e velocidade $q_{des}$ e $\dot{q_{des}}$ não é sempre possível. Nas simulações feitas acima, apenas a simulação 3 na figura \ref{fig:pumasim3} que possui condições iniciais de posição e velocidade iguais às condições desejadas consegue se manter na posição, pois o torque aplicado foi calculado especificamente para isso. 
+
+Nas demais simulações podemos verificar o torque é insuficiente para levar o robô para a posição desejada, e este acaba indo para uma posição de equilíbrio de menor energia potencial, como pode-se observar pelos valores finais de $q_2$ nas figuras \ref{fig:pumasim1}, \ref{fig:pumasim2} e \ref{fig:pumasim4}. Ainda na figura \ref{fig:pumasim4}, podemos ver que mesmo uma pequena diferença entre a condição inicial e a desejada fazem com que o robô não atinja a posição desejada.
+
+Isto acontece porque as entradas do sistema em malha aberta não dependem de suas saídas, ou seja, não há realimentação. Para o robô se deslocar de sua  posição inicial até a posição desejada são necessários um conjunto de torques sucessivos que variam de acordo com o posicionamento intermediário do robô. No entanto, em malha aberta não temos esta informação sobre a posição intermediária do robô, e aplicamos somente o torque necessário para manter o robô em equilíbrio quando ele já está em sua posição desejada.
 
 \subsection{Equilíbrio de energia}
 A seção 6.4 da tese\cite{bb:tese} utilizada como base trata da análise de equilíbrio de energia do robô. No nosso estudo, vamos considerar nulos os esforços de compensação da força gravitacional, fazendo um estudo da energia cinética do robô Puma 560 (translação e rotação), conforme mostrado nas simulações a seguir, sendo as simulações 5 e 6 feitas com atrito viscoso (sem atrito seco), e sem atrito viscoso nem atrito seco.
@@ -268,6 +273,12 @@ q_{init}=\begin{bmatrix}
 \end{figure}
 
 %TODO: Comentar simulações
+Quando comparamos a simulação 5 com atrito (figuras \ref{fig:pumasim5} e \ref{fig:energysim5}) com a sem atrito (figuras \ref{fig:pumasim5nf} e \ref{fig:energysim5nf}) podemos notar que a primeira, sem oscilar muito, se acomoda em sua posição de equilíbrio estático (vertical com a ponta para baixo) após algum tempo, enquanto a segunda continua oscilando, com a junta $q_3$ dando mais voltas no sentido negativo que no positivo. Além disso, a energia da primeira se dissipa por meio do atrito conforme se observa na diminuição da amplitude dos picos sucessivos da energia cinética. Como na segunda não temos atrito, não podemos fazer a mesma observação. 
+
+Observações semelhantes podem ser feitas comparando a simulação 6 com atrito (figuras \ref{fig:pumasim6} e \ref{fig:energysim6}) com a sem atrito (figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf}).
+
+Quando comparamos as duas simulações com atrito (figuras \ref{fig:pumasim5} e \ref{fig:energysim5} para a simulação 5 e figuras \ref{fig:pumasim6} e \ref{fig:energysim6} para a simulação 6) notamos que são muito semelhantes, pois partem de simulações com condições inicias próximas uma da outra. Quando comparamos as duas simulações sem atrito (figuras \ref{fig:pumasim5nf} e \ref{fig:energysim5nf} para a simulação 5 e figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf} para a simulação 6), notamos também comportamentos semelhantes pelo mesmo motivo.
+
 
 \subsection{Controle em malha fechada}
 Para fazer um controle efetivo do robô, iremos agora considerar um controlador para o sistema em malha fechada. Ao fechar a malha, temos como entrada do controlador a diferença entre a referência e a saída, também chamada de erro. Conforme proposto na tese\cite{bb:tese} que estamos utilizando como base, iremos implementar um controlador PD, considerando cada uma das juntas como um sistema SISO.
