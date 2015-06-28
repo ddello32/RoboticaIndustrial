@@ -47,7 +47,7 @@
 
 \onehalfspacing
 \section{Objetivos} 
-O objetivo desse projeto é simular e analisar aspectos dinâmicos de um robô Puma 560, e cinemática de um robô criado pelo arquivo ``ini\_Rbt.m"\cite{bb:inirbt} conforme sugerido pelo roteiro\cite{bb:roteiro}.
+O objetivo desse projeto é simular e analisar aspectos dinâmicos de um robô Puma 560, e cinemática de um robô criado pelo arquivo ``ini\_Rbt.m"\cite{bb:inirbt} conforme sugerido pelo roteiro\cite{bb:roteiro}. 
 	
 \section{Dinâmica do Puma 560}
 Pelo roteiro foi sugerido para a análise dinâmica, utilizar o robô Puma 560 construído automaticamente pela ``toolbox" de robótica\cite{bb:toolbox}, a função ``accel" e a ``Matlab Function" pelo Simulink. Entretanto, algumas modificações foram feitas. Retiramos o atrito seco (de Coulomb) nas juntas do robô, pois gerava longos tempos de simulação, e utilizamos um ``script" do Matlab em vez de usar o Simulink.
@@ -72,7 +72,7 @@ q_{des}=\begin{bmatrix}
 \begin{equation}
 \label{eq:torques}
 u=\begin{bmatrix}
-0 & 0 & 0 & 0 & 0 & 0 %TODO: escrever vetor de torques
+0 & -0.7752 & 0.2489 & 0 & 0 & 0 %TODO: rever vetor de torques
 \end{bmatrix}^T
 \end{equation}
 
@@ -137,7 +137,7 @@ q_{init}=\begin{bmatrix}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{../sim4ode}
+	\includegraphics[width=0.8\linewidth]{../sim3ode}
 	\caption{Simulação 3 para o robô Puma}
 	\label{fig:pumasim3}
 \end{figure}
@@ -272,28 +272,28 @@ q_{init}=\begin{bmatrix}
 \subsection{Controle em malha fechada}
 Para fazer um controle efetivo do robô, iremos agora considerar um controlador para o sistema em malha fechada. Ao fechar a malha, temos como entrada do controlador a diferença entre a referência e a saída, também chamada de erro. Conforme proposto na tese\cite{bb:tese} que estamos utilizando como base, iremos implementar um controlador PD, considerando cada uma das juntas como um sistema SISO.
 
-Utilizando como base os ganhos $K_p$ e $K_d$ do controlador calculado para o robô da tese, aprimoramos seus valores e chegamos em $K_p$ e $K_d$ dados pelas equações \ref{eq:kp} e \ref{eq:kd}. %TODO: Colocar valores do controlador
+Após verificar que os torques utulizados no robô Puma 560 eram aproximadamente um terço dos torques do robô utilizado na tese\cite{bb:tese}, utilizando como base os ganhos $K_p$ e $K_d$ do controlador calculado para o robô da tese, aprimoramos seus valores dividindo os da tese por três e chegamos em $K_p$ e $K_d$ dados pelas equações \ref{eq:kp} e \ref{eq:kd}.
 
 \begin{equation}
 \label{eq:kp}
 \tau=\begin{bmatrix}
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
+16.6667 & 0 & 0 & 0 & 0 & 0\\
+0 & 16.6667 & 0 & 0 & 0 & 0\\
+0 & 0 & 16.6667 & 0 & 0 & 0\\
+0 & 0 & 0 & 16.6667 & 0 & 0\\
+0 & 0 & 0 & 0 & 16.6667 & 0\\
+0 & 0 & 0 & 0 & 0 & 20\\
 \end{bmatrix}
 \end{equation}
 \begin{equation}
 \label{eq:kd}
 \tau=\begin{bmatrix}
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
-0 & 0 & 0 & 0 & 0 & 0\\
+6.6667 & 0 & 0 & 0 & 0 & 0\\
+0 & 6.6667 & 0 & 0 & 0 & 0\\
+0 & 0 & 6.6667 & 0 & 0 & 0\\
+0 & 0 & 0 & 6.6667 & 0 & 0\\
+0 & 0 & 0 & 0 & 6.6667 & 0\\
+0 & 0 & 0 & 0 & 0 & 7.3333\\
 \end{bmatrix}
 \end{equation}
 
@@ -318,6 +318,13 @@ q_{ref}=\begin{bmatrix}
 \end{bmatrix}^T
 \end{equation}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{banana}
+	\caption{Simulação 7 para o robô Puma com controlador}
+	\label{fig:pumasim7}
+\end{figure}
+
 \subsubsection{Simulação 8}
 Condições iniciais e referência:
 \begin{equation}
@@ -338,6 +345,13 @@ q_{ref}=\begin{bmatrix}
 \pi & 0 & 0 & \pi & -\frac{\pi}{2} & 0
 \end{bmatrix}^T
 \end{equation}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{banana}
+	\caption{Simulação 8 para o robô Puma com controlador}
+	\label{fig:pumasim8}
+\end{figure}
 
 \subsubsection{Simulação 9}
 Condições iniciais e referência:
@@ -360,15 +374,40 @@ q_{ref}=\begin{bmatrix}
 \end{bmatrix}^T
 \end{equation}
 
-%TODO: comentar sobre as simulações
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{banana}
+	\caption{Simulação 9 para o robô Puma com controlador}
+	\label{fig:pumasim9}
+\end{figure}
+
+%TODO: comentar sobre as simulações e arrumar as imagens
 
 \section{Cinemática}
-\subsection{Controle de Trajetória}
+Para o estudo da cinemática, iremos usar o robô criado por ``ini\_Rbt"\cite{bb:inirbt}, e não o Puma 560 com que estávamos trabalhando até o momento. Foram feitos utilizando ``script" do Matlab em que descrevemos a trajetória espacial desejada, e o robô calcula os ângulos de suas juntas para cada ponto da trajetória por meio da cinemática inversa usando a toolbox\cite{bb:toolbox}. Estes valores são armazenados para criar a animação do movimento do robô, em que colocamos o robô em cada posição da sequência.
+
 \subsection{Elipse}
+Uma das trajetórias que testamos foi uma elipse no chão, conforme figura \ref{fig:elipsec}, e também uma elipse na parede, conforme \ref{fig:elipsep}. Notamos que os raios da elipse e sua distância em relação à base do robô possuem um limite, já que existe um alcance restrito ao robô dado pelo comprimento de seus elos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{banana}
+	\caption{Execução da trajetória em elipse no chão}
+	\label{fig:elipsec}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{banana}
+	\caption{Execução da trajetória em elipse na parede}
+	\label{fig:elipse}
+\end{figure}
+
 
 \section{Questões}
 \begin{itemize}
 	\item \textbf{Por que na seção ``Controle em malha fechada" os torques finais obtidos são nulos? O torque final não deveria ser igual ao torque de compensação da força da gravidade?}
+	
+	Conforme solicitado no roteiro\cite{bb:roteiro}, foi considerada somente a energia cinética do problema, ou seja, consideramos a gravidade igual a zero. Logo, o torque final que compensa a força da gravidade é zero.
 	
 	\item \textbf{Na seção ``Equilíbrio de energia cinética" foi indicado um comando do Matlab para se obter a matriz de massa/inércia no espaço das juntas $\rightarrow M(q)$. Como você faria para obter essa matriz de massa utilizando o método de Newton-Euler além de manipulação simbólica? Veja os apêndices B e C da tese\cite{bb:tese}. Essa matriz corresponde à matriz $M(q)$ da equação geral da dinâmica de um robô, como dado abaixo, onde ``u" é o vetor de torques nas juntas.}
 	
@@ -376,6 +415,8 @@ q_{ref}=\begin{bmatrix}
 	\label{eq:mq}
 	M(q)\ddot{q}+C(q,\dot{q})\dot{q}+g(q)=u
 	\end{equation}
+	
+	%TODO: Responder questão 2
 	
 	\item \textbf{Por que essa matriz de massa $M(q)$ não é do tipo da matriz de massa abaixo de um corpo rígido, que é uma matriz $6x6$ com uma matriz diagonal $M$ e outra matriz de inércia do corpo J?}
 	
@@ -387,6 +428,7 @@ q_{ref}=\begin{bmatrix}
 	\end{bmatrix}
 	\end{equation}
 	
+	%TODO: Responder questão 3
 	
 \end{itemize}
 
