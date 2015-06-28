@@ -272,11 +272,11 @@ q_{init}=\begin{bmatrix}
 \subsection{Controle em malha fechada}
 Para fazer um controle efetivo do robô, iremos agora considerar um controlador para o sistema em malha fechada. Ao fechar a malha, temos como entrada do controlador a diferença entre a referência e a saída, também chamada de erro. Conforme proposto na tese\cite{bb:tese} que estamos utilizando como base, iremos implementar um controlador PD, considerando cada uma das juntas como um sistema SISO.
 
-Após verificar que os torques utulizados no robô Puma 560 eram aproximadamente um terço dos torques do robô utilizado na tese\cite{bb:tese}, utilizando como base os ganhos $K_p$ e $K_d$ do controlador calculado para o robô da tese, aprimoramos seus valores dividindo os da tese por três e chegamos em $K_p$ e $K_d$ dados pelas equações \ref{eq:kp} e \ref{eq:kd}.
+Após verificar que os torques utilizados no robô Puma 560 eram aproximadamente um terço dos torques do robô utilizado na tese\cite{bb:tese}, utilizando como base os ganhos $K_p$ e $K_d$ do controlador calculado para o robô da tese, aprimoramos seus valores dividindo os da tese por três e chegamos em $K_p$ e $K_d$ dados pelas equações \ref{eq:kp} e \ref{eq:kd}.
 
 \begin{equation}
 \label{eq:kp}
-\tau=\begin{bmatrix}
+K_p=\begin{bmatrix}
 16.6667 & 0 & 0 & 0 & 0 & 0\\
 0 & 16.6667 & 0 & 0 & 0 & 0\\
 0 & 0 & 16.6667 & 0 & 0 & 0\\
@@ -287,7 +287,7 @@ Após verificar que os torques utulizados no robô Puma 560 eram aproximadamente
 \end{equation}
 \begin{equation}
 \label{eq:kd}
-\tau=\begin{bmatrix}
+K_d=\begin{bmatrix}
 6.6667 & 0 & 0 & 0 & 0 & 0\\
 0 & 6.6667 & 0 & 0 & 0 & 0\\
 0 & 0 & 6.6667 & 0 & 0 & 0\\
@@ -320,9 +320,16 @@ q_{ref}=\begin{bmatrix}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{banana}
+	\includegraphics[width=0.8\linewidth]{../sim1cl}
 	\caption{Simulação 7 para o robô Puma com controlador}
 	\label{fig:pumasim7}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../sim1clu}
+	\caption{Esforços de controle para simulação 7 para o robô Puma com controlador}
+	\label{fig:pumasim7clu}
 \end{figure}
 
 \subsubsection{Simulação 8}
@@ -348,9 +355,16 @@ q_{ref}=\begin{bmatrix}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{banana}
+	\includegraphics[width=0.8\linewidth]{../sim2cl}
 	\caption{Simulação 8 para o robô Puma com controlador}
 	\label{fig:pumasim8}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../sim2clu}
+	\caption{Esforços de controle para simulação 8 para o robô Puma com controlador}
+	\label{fig:pumasim8clu}
 \end{figure}
 
 \subsubsection{Simulação 9}
@@ -376,9 +390,16 @@ q_{ref}=\begin{bmatrix}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{banana}
+	\includegraphics[width=0.8\linewidth]{../sim3cl}
 	\caption{Simulação 9 para o robô Puma com controlador}
 	\label{fig:pumasim9}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{../sim3clu}
+	\caption{Esforços de controle para simulação 9 para o robô Puma com controlador}
+	\label{fig:pumasim9clu}
 \end{figure}
 
 %TODO: comentar sobre as simulações e arrumar as imagens
@@ -407,7 +428,12 @@ Uma das trajetórias que testamos foi uma elipse no chão, conforme figura \ref{
 \begin{itemize}
 	\item \textbf{Por que na seção ``Controle em malha fechada" os torques finais obtidos são nulos? O torque final não deveria ser igual ao torque de compensação da força da gravidade?}
 	
-	Conforme solicitado no roteiro\cite{bb:roteiro}, foi considerada somente a energia cinética do problema, ou seja, consideramos a gravidade igual a zero. Logo, o torque final que compensa a força da gravidade é zero.
+	Conforme apontado por Herman Høifødt\cite{bb:tese} em sua tese, na seção 6.5.1, ao somar a carga gravitacional ao esforço de controle do controlador PD podemos controlar o sistema. Fizemos então a mesma simplificação que foi feita por ele na seção 6.5.2 de remover o termo gravitacional diretamente do modelo do robô ao invés de somar esse termo na resposta do controlador, por isso obtemos os torques finais como nulos.
+	Se não nos utilizássemos dessa simplificação, a equação de nosso controlador seria da seguinte forma e o esforço final seria não nulo:
+	
+	\begin{equation}
+		u = -K_p\cdot (q - q_r) -K_d\cdot\dot{q} + gravload(q);
+	\end{equation}
 	
 	\item \textbf{Na seção ``Equilíbrio de energia cinética" foi indicado um comando do Matlab para se obter a matriz de massa/inércia no espaço das juntas $\rightarrow M(q)$. Como você faria para obter essa matriz de massa utilizando o método de Newton-Euler além de manipulação simbólica? Veja os apêndices B e C da tese\cite{bb:tese}. Essa matriz corresponde à matriz $M(q)$ da equação geral da dinâmica de um robô, como dado abaixo, onde ``u" é o vetor de torques nas juntas.}
 	
