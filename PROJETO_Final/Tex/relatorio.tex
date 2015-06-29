@@ -447,12 +447,12 @@ Uma das trajetórias que testamos foi uma elipse no chão, e também uma elipse 
 	M(q)\ddot{q}+C(q,\dot{q})\dot{q}+g(q)=u
 	\end{equation}
 	
-	Utilizando o método de Newton-Euler encontraríamos em função de $\ddot{q}$, $\dot{q}$, $q$ e $g$, recursivamente, da base para a ponta, para cada um dos elos os seus $\omega_i$, depois seus $\alpha_i$. Resolveríamos da ponta para a base o torque necessário $\tau_i$, relacionando com as acelerações encontradas, encontrando o torque na junta i em função dos parâmetros $\ddot{q}$, $\dot{q}$, $q$ e $g$.
+	Utilizando o método de Newton-Euler encontraríamos recursivamente, partindo da base para a ponta, a velocidade angular $\omega_i$ e a aceleração angular $\alpha_i$, representadas em relação à base, para cada um dos elos. Resolveríamos então, novamente de maneira recursiva, mas dessa vez da ponta para a base, o torque $\tau_i$, relacionado com as acelerações encontradas, chegando em fim em equações que nos dão o torque na junta i em função dos parâmetros $\ddot{q}$, $\dot{q}$, $q$ e $g$.
 	\begin{equation}
 		\tau_i(\ddot{q}, \dot{q}, q, g)
 	\end{equation} 
 	
-	Isso pode ser feito da maneira detalhada na seção 3.2.2 da tese \cite{bb:tese}. Com essas equações, podemos determinar $m(q)_{i,j}$ fazendo:
+	Isso pode ser feito da maneira detalhada na seção 3.2.2 da tese \cite{bb:tese}. Com essas equações, podemos determinar os termos da $m(q)_{i,j}$ da matriz $M(q)$ fazendo:
 	\begin{equation}
 		m(q)_{i,j} = \tau_i(x_j, 0, q, 0)
 	\end{equation}
