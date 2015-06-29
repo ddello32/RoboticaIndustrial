@@ -164,7 +164,6 @@ q_{init}=\begin{bmatrix}
 	\label{fig:pumasim4}
 \end{figure}
 
-%TODO: Revisar comentário malha aberta
 Conforme podemos observar, controlar o sistema em malha aberta colocando como entrada o torque necessário $u$ para manter o robô em uma determinada posição e velocidade $q_{des}$ e $\dot{q_{des}}$ não é sempre possível. Nas simulações feitas acima, apenas a simulação 3 na figura \ref{fig:pumasim3} que possui condições iniciais de posição e velocidade iguais às condições desejadas consegue se manter na posição, pois o torque aplicado foi calculado especificamente para isso. 
 
 Nas demais simulações podemos verificar o torque é insuficiente para levar o robô para a posição desejada, e este acaba indo para uma posição de equilíbrio de menor energia potencial, como pode-se observar pelos valores finais de $q_2$ nas figuras \ref{fig:pumasim1}, \ref{fig:pumasim2} e \ref{fig:pumasim4}. Ainda na figura \ref{fig:pumasim4}, podemos ver que mesmo uma pequena diferença entre a condição inicial e a desejada fazem com que o robô não atinja a posição desejada.
@@ -277,7 +276,7 @@ Quando comparamos a simulação 5 com atrito (figuras \ref{fig:pumasim5} e \ref{
 
 Observações semelhantes podem ser feitas comparando a simulação 6 com atrito (figuras \ref{fig:pumasim6} e \ref{fig:energysim6}) com a sem atrito (figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf}).
 
-Quando comparamos as duas simulações com atrito (figuras \ref{fig:pumasim5} e \ref{fig:energysim5} para a simulação 5 e figuras \ref{fig:pumasim6} e \ref{fig:energysim6} para a simulação 6) notamos que são muito semelhantes, pois partem de simulações com condições inicias próximas uma da outra. Quando comparamos as duas simulações sem atrito (figuras \ref{fig:pumasim5nf} e \ref{fig:energysim5nf} para a simulação 5 e figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf} para a simulação 6), notamos também comportamentos semelhantes pelo mesmo motivo.
+Quando comparamos as duas simulações com atrito (figuras \ref{fig:pumasim5} e \ref{fig:energysim5} para a simulação 5 e figuras \ref{fig:pumasim6} e \ref{fig:energysim6} para a simulação 6) notamos que são muito semelhantes, pois partem de simulações com condições inicias próximas uma da outra. Quando comparamos as duas simulações sem atrito (figuras \ref{fig:pumasim5nf} e \ref{fig:energysim5nf} para a simulação 5 e figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf} para a simulação 6), notamos também comportamentos semelhantes pelo mesmo motivo. Esse comportamento é diferente do encontrado na tese \cite{bb:tese}, mas devemos levar em consideração as diferenças entre o robô da tese e o puma560 e os erros numéricos da simulação, além da significância da posição inicial passada, embora tenhamos usados os mesmos ângulos para cada junta, esses ângulos implicam em uma configuração diferente para o robô. 
 
 
 \subsection{Controle em malha fechada}
