@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \usepackage[utf8]{inputenc}
 \usepackage[brazilian]{babel}
 \usepackage{graphicx}
@@ -271,7 +270,7 @@ q_{init}=\begin{bmatrix}
 	\label{fig:energysim6nf}
 \end{figure}
 
-%TODO: Comentar simulações
+%TODO: revisar
 Quando comparamos a simulação 5 com atrito (figuras \ref{fig:pumasim5} e \ref{fig:energysim5}) com a sem atrito (figuras \ref{fig:pumasim5nf} e \ref{fig:energysim5nf}) podemos notar que a primeira, sem oscilar muito, se acomoda em sua posição de equilíbrio estático (vertical com a ponta para baixo) após algum tempo, enquanto a segunda continua oscilando, com a junta $q_3$ dando mais voltas no sentido negativo que no positivo. Além disso, a energia da primeira se dissipa por meio do atrito conforme se observa na diminuição da amplitude dos picos sucessivos da energia cinética. Como na segunda não temos atrito, não podemos fazer a mesma observação. 
 
 Observações semelhantes podem ser feitas comparando a simulação 6 com atrito (figuras \ref{fig:pumasim6} e \ref{fig:energysim6}) com a sem atrito (figuras \ref{fig:pumasim6nf} e \ref{fig:energysim6nf}).
@@ -412,13 +411,16 @@ q_{ref}=\begin{bmatrix}
 	\label{fig:pumasim9clu}
 \end{figure}
 
-%TODO: comentar sobre as simulações e arrumar as imagens
+%TODO: revisar
+Observando as simulações nas figuras \ref{fig:pumasim7}, \ref{fig:pumasim8} e \ref{fig:pumasim9}, notamos que o robô é capaz de atingir a posição desejada em cada um dos casos, independentemente de suas condições iniciais de posição ou velocidade. Com ligação direta a este resultado, temos o esforço de controle de cada uma das juntas em cada uma das simulações representados nas figuras \ref{fig:pumasim7clu}, \ref{fig:pumasim8clu} e \ref{fig:pumasim9clu}.
+
+No entanto, podemos notar também que os módulos desses esforços de controle são bastante elevados no início das simulações, para tentar levar o robô para a posição desejada o mais rápido possível, o que não é aplicável na realidade por limitações físicas dos atuadores no robô. Para obter uma simulação com características mais realistas, deve-se criar uma saturação nos esforços de controle de cada junta condizente com o modelo físico, assim o robô simulado terá seu comportamento mais próximo da realidade.
 
 \section{Cinemática}
 Para o estudo da cinemática, iremos usar o robô criado por ``ini\_Rbt"\cite{bb:inirbt}, e não o Puma 560 com que estávamos trabalhando até o momento. Foram feitos utilizando ``script" do Matlab em que descrevemos a trajetória espacial desejada, e o robô calcula os ângulos de suas juntas para cada ponto da trajetória por meio da cinemática inversa usando a toolbox\cite{bb:toolbox}. Estes valores são armazenados para criar a animação do movimento do robô, em que colocamos o robô em cada posição da sequência.
 
 \subsection{Elipse}
-Uma das trajetórias que testamos foi uma elipse no chão, conforme figura \ref{fig:elipsec}, e também uma elipse na parede, conforme \ref{fig:elipsep}. Notamos que os raios da elipse e sua distância em relação à base do robô possuem um limite, já que existe um alcance restrito ao robô dado pelo comprimento de seus elos.
+Uma das trajetórias que testamos foi uma elipse no chão, e também uma elipse na parede, conforme figura \ref{fig:elipsec}. Notamos que os raios da elipse e sua distância em relação à base do robô possuem um limite, já que existe um alcance restrito ao robô dado pelo comprimento de seus elos.
 
 \begin{figure}[H]
 	\centering
