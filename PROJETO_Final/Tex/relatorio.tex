@@ -447,7 +447,7 @@ Uma das trajetórias que testamos foi uma elipse no chão, e também uma elipse 
 	M(q)\ddot{q}+C(q,\dot{q})\dot{q}+g(q)=u
 	\end{equation}
 	
-	Utilizando o método de Newton-Euler encontraríamos o torque na junta i  em função dos parâmetros $\ddot{q}$, $\dot{q}$, $q$ e $g$.
+	Utilizando o método de Newton-Euler encontraríamos em função de $\ddot{q}$, $\dot{q}$, $q$ e $g$, recursivamente, da base para a ponta, para cada um dos elos os seus $\omega_i$, depois seus $\alpha_i$. Resolveríamos da ponta para a base o torque necessário $\tau_i$, relacionando com as acelerações encontradas, encontrando o torque na junta i em função dos parâmetros $\ddot{q}$, $\dot{q}$, $q$ e $g$.
 	\begin{equation}
 		\tau_i(\ddot{q}, \dot{q}, q, g)
 	\end{equation} 
