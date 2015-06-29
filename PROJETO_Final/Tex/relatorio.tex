@@ -411,7 +411,6 @@ q_{ref}=\begin{bmatrix}
 	\label{fig:pumasim9clu}
 \end{figure}
 
-%TODO: revisar
 Observando as simulações nas figuras \ref{fig:pumasim7}, \ref{fig:pumasim8} e \ref{fig:pumasim9}, notamos que o robô é capaz de atingir a posição desejada em cada um dos casos, independentemente de suas condições iniciais de posição ou velocidade. Com ligação direta a este resultado, temos o esforço de controle de cada uma das juntas em cada uma das simulações representados nas figuras \ref{fig:pumasim7clu}, \ref{fig:pumasim8clu} e \ref{fig:pumasim9clu}.
 
 No entanto, podemos notar também que os módulos desses esforços de controle são bastante elevados no início das simulações, para tentar levar o robô para a posição desejada o mais rápido possível, o que não é aplicável na realidade por limitações físicas dos atuadores no robô. Para obter uma simulação com características mais realistas, deve-se criar uma saturação nos esforços de controle de cada junta condizente com o modelo físico, assim o robô simulado terá seu comportamento mais próximo da realidade.
@@ -448,7 +447,16 @@ Uma das trajetórias que testamos foi uma elipse no chão, e também uma elipse 
 	M(q)\ddot{q}+C(q,\dot{q})\dot{q}+g(q)=u
 	\end{equation}
 	
-	%TODO: Responder questão 2
+	Utilizando o método de Newton-Euler encontraríamos o torque na junta i  em função dos parâmetros $\ddot{q}$, $\dot{q}$, $q$ e $g$.
+	\begin{equation}
+		\tau_i(\ddot{q}, \dot{q}, q, g)
+	\end{equation} 
+	
+	Isso pode ser feito da maneira detalhada na seção 3.2.2 da tese \cite{bb:tese}. Com essas equações, podemos determinar $m(q)_{i,j}$ fazendo:
+	\begin{equation}
+		m(q)_{i,j} = \tau_i(x_j, 0, q, 0)
+	\end{equation}
+	Onde $x_j$ é o vetor unitário onde todos os termos são 0 exceto o termo de índice j, que vale 1.
 	
 	\item \textbf{Por que essa matriz de massa $M(q)$ não é do tipo da matriz de massa abaixo de um corpo rígido, que é uma matriz $6x6$ com uma matriz diagonal $M$ e outra matriz de inércia do corpo J?}
 	
